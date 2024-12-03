@@ -73,8 +73,8 @@
         </constraints>
         <properties>
           <background color="-5751755"/>
-          <borderPainted value="false"/>
-          <contentAreaFilled value="true"/>
+          <borderPainted value="true"/>
+          <contentAreaFilled value="false"/>
           <font name="JetBrains Mono" size="14"/>
           <foreground color="-16777216"/>
           <text value="Login"/>
@@ -126,6 +126,7 @@
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="4"/>
           <text value="Incorrect user or password "/>
+          <visible value="false"/>
         </properties>
       </component>
     </children>

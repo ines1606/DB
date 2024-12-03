@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.function.Consumer;
 
 public class LoginPage {
     private JPanel mainPanel; // Representing the root panel linked with the .form file
@@ -11,6 +12,8 @@ public class LoginPage {
     private JButton PasswordToggle;
     private JLabel errorLabel;
     private JButton loginButton;
+    private boolean onLoginSuccess;
+    private Runnable loginSuccessListener;
 
     private final String correctUsername = "user";
     private final String correctPassword = "password";
@@ -23,20 +26,18 @@ public class LoginPage {
     private final ImageIcon closedEyeIcon = new ImageIcon(getClass().getResource("/eye_closed.png"));
 
     public LoginPage() {
-        UserField.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        passwordInput.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         PasswordToggle.setIcon(closedEyeIcon);
         errorLabel.setVisible(false);
         // Setup action listeners
         PasswordToggle.addActionListener(e -> {
             if (isPasswordVisible) {
-                passwordInput.setEchoChar('\u2022'); // Hide password
-                PasswordToggle.setIcon(closedEyeIcon); // Set closed eye icon
+                passwordInput.setEchoChar('\u2022');
+                PasswordToggle.setIcon(closedEyeIcon);
             } else {
-                passwordInput.setEchoChar('\0'); // Show password
-                PasswordToggle.setIcon(openEyeIcon); // Set open eye icon
+                passwordInput.setEchoChar('\0');
+                PasswordToggle.setIcon(openEyeIcon);
             }
-            isPasswordVisible = !isPasswordVisible; // Toggle the password visibility state
+            isPasswordVisible = !isPasswordVisible;
         });
 
         loginButton.addActionListener(e -> {
@@ -44,25 +45,53 @@ public class LoginPage {
             String enteredPassword = new String(passwordInput.getPassword());
 
             if (enteredUsername.equals(correctUsername) && enteredPassword.equals(correctPassword)) {
-                JOptionPane.showMessageDialog(null, "Login successful!"); // Corrected frame reference
                 errorLabel.setVisible(false);
+                onLoginSuccess = true;
+                onLoginSuccess();
             } else {
                 errorLabel.setText("Invalid username or password");
                 errorLabel.setVisible(true);
+                onLoginSuccess = false;
+
+
             }
         });
     }
 
+    private void onLoginSuccess() {
+        if (loginSuccessListener != null) {
+            loginSuccessListener.run();
+        }
+    }
+
+    public void setLoginSuccessListener(Runnable loginSuccessListener) {
+        this.loginSuccessListener = loginSuccessListener;
+    }
+
+    public boolean checkAndResetLoginStatus() {
+        if (onLoginSuccess) {
+            onLoginSuccess = false; // Reset después de ser capturado
+            return true;
+        }
+        return false;
+    }
+
+    public String getUsername() {
+        return UserField.getText();
+    }
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
     public static void main(String[] args) {
-        // Runnable to ensure you are running on the Event Dispatch Thread
+
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Login Page");
             LoginPage loginPage = new LoginPage();
-            frame.setContentPane(loginPage.mainPanel); // Use the main panel linked in the .form
-
+            frame.setContentPane(loginPage.mainPanel);
             frame.setResizable(false);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack(); // Adjusts the window to its components
+            frame.pack();
             frame.setVisible(true);
         });
     }
