@@ -25,7 +25,7 @@ public class LoginPage {
     public LoginPage() {
         UserField.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         passwordInput.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        PasswordToggle.setIcon(openEyeIcon);
+        PasswordToggle.setIcon(closedEyeIcon);
         errorLabel.setVisible(false);
         // Setup action listeners
         PasswordToggle.addActionListener(e -> {
