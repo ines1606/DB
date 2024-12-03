@@ -5,7 +5,7 @@ public class JavaApplicaiton {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = null;
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost/Ex1", "postgres", "1606");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost/FirstEx", "kys", "ohnepass");
             Statement st = connection.createStatement();
             System.out.println("Connection established");
 
@@ -15,7 +15,7 @@ public class JavaApplicaiton {
             while (rs.next()) {
                 String nid = rs.getString("nid");
                 String name = rs.getString("name");
-                System.out.println("\nPerson with nid "+nid+",is called" +name);
+                System.out.println("\nPerson with nid "+nid+", is called " +name);
             }
             ResultSet rs2;
             rs2 = st.executeQuery("Select * from car");
