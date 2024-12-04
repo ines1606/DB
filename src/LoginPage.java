@@ -26,6 +26,8 @@ public class LoginPage {
     private final ImageIcon closedEyeIcon = new ImageIcon(getClass().getResource("/eye_closed.png"));
 
     public LoginPage() {
+        UserField.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        passwordInput.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         PasswordToggle.setIcon(closedEyeIcon);
         errorLabel.setVisible(false);
         // Setup action listeners
