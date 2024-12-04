@@ -58,6 +58,13 @@ public class LoginPage {
         });
     }
 
+    public void resetPage(){
+        UserField.setText("");
+        passwordInput.setText("");
+        errorLabel.setVisible(false);
+        onLoginSuccess = false;
+    }
+
     private void onLoginSuccess() {
         if (loginSuccessListener != null) {
             loginSuccessListener.run();

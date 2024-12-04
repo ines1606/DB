@@ -10,15 +10,16 @@ public class QueriesPage {
     private JTextField queriesField;
     private JPanel mainPanel;
     private JLabel queryLabel;
+    private JButton LogoutButton;
     private String currentQuery;
     private String queryOutput = "Sample Output"; // Placeholder for output results
-
+    private boolean logout = false;
+    private Runnable logoutListener;
     // Placeholder for the specific user, assuming it's passed or set somewhere
 
 
     public QueriesPage(String username) {
         queriesField.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        greetingLabel.setText("Hello, " + username + "!");
 
         runButton.addActionListener(new ActionListener() {
             @Override
@@ -35,6 +36,31 @@ public class QueriesPage {
                 outputPlane.setText(""); // Clear output pane
             }
         });
+        LogoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                logout = true;
+                onLogout();
+            }
+        });
+    }
+
+    private void onLogout() {
+        if (logoutListener != null) {
+            logoutListener.run();
+        }
+    }
+
+    public void setLogoutListener(Runnable logoutListener) {
+        this.logoutListener = logoutListener;
+    }
+
+    public boolean isLogoutTriggered() {
+        if (logout) {
+            logout = false;
+            return true;
+        }
+        return false;
     }
 
 
@@ -47,12 +73,12 @@ public class QueriesPage {
         return mainPanel;
     }
 
-    // Assuming this class also needs a main method for standalone testing
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            String enteredUsername = "Fata Morgana"; // Replace with actual username if needed
+            String enteredUsername = "Fata Morgana";
             JFrame frame = new JFrame("Queries Page");
-            QueriesPage queriesPage = new QueriesPage(enteredUsername); // Supply username
+            QueriesPage queriesPage = new QueriesPage(enteredUsername);
             frame.setContentPane(queriesPage.getMainPanel());
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();

@@ -26,16 +26,21 @@ public class Main {
                 togglePage();
             }
         });
+
+        queriesPage.setLogoutListener(() -> {
+            if (queriesPage.isLogoutTriggered()) {
+                togglePage();
+            }
+        });
     }
 
 
     private void togglePage() {
         if (isOnLoginPage) {
-            // Transitioning from LoginPage to QueriesPage
             queriesPage.updateUser(loginPage.getUsername());
             mainFrame.setContentPane(queriesPage.getMainPanel());
         } else {
-            // Transitioning back to LoginPage if needed later
+            loginPage.resetPage();
             mainFrame.setContentPane(loginPage.getMainPanel());
         }
         mainFrame.pack();
