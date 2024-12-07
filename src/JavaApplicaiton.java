@@ -5,12 +5,12 @@ public class JavaApplicaiton {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = null;
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost/FirstEx", "kys", "ohnepass");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DBProject", "postgres", "1606");
             Statement st = connection.createStatement();
             System.out.println("Connection established");
 
             ResultSet rs;
-            rs = st.executeQuery("select * from person");
+            rs = st.executeQuery("select * from public.\"Payment\"");
 
             while (rs.next()) {
                 String nid = rs.getString("nid");
