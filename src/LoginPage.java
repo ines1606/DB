@@ -51,8 +51,9 @@ public class LoginPage {
                 onLoginSuccess = true;
                 onLoginSuccess();
             } else {
-                errorLabel.setText("Invalid username or password");
                 errorLabel.setVisible(true);
+                passwordInput.setText("");
+                UserField.setText("");
                 onLoginSuccess = false;
 
 
