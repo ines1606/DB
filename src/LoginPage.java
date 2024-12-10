@@ -93,16 +93,4 @@ public class LoginPage {
         return mainPanel;
     }
 
-    public static void main(String[] args) {
-
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Login Page");
-            LoginPage loginPage = new LoginPage();
-            frame.setContentPane(loginPage.mainPanel);
-            frame.setResizable(false);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack();
-            frame.setVisible(true);
-        });
-    }
 }

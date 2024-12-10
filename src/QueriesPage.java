@@ -72,17 +72,4 @@ public class QueriesPage {
         return mainPanel;
     }
 
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            String enteredUsername = "Fata Morgana";
-            JFrame frame = new JFrame("Queries Page");
-            QueriesPage queriesPage = new QueriesPage(enteredUsername);
-            frame.setContentPane(queriesPage.getMainPanel());
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack();
-            frame.setResizable(false);
-            frame.setVisible(true);
-        });
-    }
 }
