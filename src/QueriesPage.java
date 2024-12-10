@@ -11,8 +11,8 @@ public class QueriesPage {
     private JPanel mainPanel;
     private JLabel queryLabel;
     private JButton LogoutButton;
+    private JTable tableQuerry;
     private String currentQuery;
-    private String queryOutput = "Sample Output"; // Placeholder for output results
     private boolean logout = false;
     private Runnable logoutListener;
     // Placeholder for the specific user, assuming it's passed or set somewhere
@@ -25,8 +25,7 @@ public class QueriesPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentQuery = queriesField.getText(); // Get query input
-                // Here, you would add logic to execute the query and update queryOutput accordingly
-                outputPlane.setText(queryOutput); // Display placeholder output
+                // add logic to execute the query and update tableQuerry accordingly
             }
         });
 

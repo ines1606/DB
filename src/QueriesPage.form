@@ -23,18 +23,6 @@
           <text value="Hy ...!"/>
         </properties>
       </component>
-      <component id="e73e8" class="javax.swing.JTextPane" binding="outputPlane">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-        </constraints>
-        <properties>
-          <background color="-528143"/>
-          <font name="JetBrains Mono" size="14"/>
-          <foreground color="-16777216"/>
-        </properties>
-      </component>
       <grid id="6e677" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -109,6 +97,16 @@
           <font name="JetBrains Mono" size="14"/>
           <foreground color="-16777216"/>
           <text value="Log out"/>
+        </properties>
+      </component>
+      <component id="9850e" class="javax.swing.JTable" binding="tableQuerry">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="JetBrains Mono" size="14"/>
         </properties>
       </component>
     </children>

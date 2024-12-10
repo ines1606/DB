@@ -39,9 +39,11 @@ public class Main {
         if (isOnLoginPage) {
             queriesPage.updateUser(loginPage.getUsername());
             mainFrame.setContentPane(queriesPage.getMainPanel());
+            mainFrame.setResizable(true);
         } else {
             loginPage.resetPage();
             mainFrame.setContentPane(loginPage.getMainPanel());
+            mainFrame.setResizable(false);
         }
         mainFrame.pack();
         isOnLoginPage = !isOnLoginPage;
