@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.sql.*;
 import java.io.IOException;
 import java.util.Map;
@@ -12,7 +13,7 @@ public class Main {
     public Main() {
 
         try {
-            ConfigManager configManager = new ConfigManager("db_config.properties", "thomas"); // Load configuration
+            ConfigManager configManager = new ConfigManager("db_config.properties", "guillermo"); // Load configuration
             dbManager = new DatabaseManager(configManager); // Initialize DatabaseManager
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Failed to load configuration: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -22,6 +23,7 @@ public class Main {
         // Initialize the main frame
         mainFrame = new JFrame("Application");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setMinimumSize(new Dimension(350, 500));
         mainFrame.setResizable(false);
 
         showLoginScreen();
@@ -43,7 +45,7 @@ public class Main {
                 JOptionPane.showMessageDialog(mainFrame, "Failed to load queries: " + e.getMessage());
             }
         });
-
+        mainFrame.setResizable(false);
         mainFrame.setContentPane(loginPage.getMainPanel());
         mainFrame.pack();
         mainFrame.setVisible(true);
@@ -54,6 +56,7 @@ public class Main {
         queriesPage.setLogoutListener(this::showLoginScreen);
 
         mainFrame.setContentPane(queriesPage.getMainPanel());
+        mainFrame.setResizable(true);
         mainFrame.pack();
     }
 
