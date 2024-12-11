@@ -1,11 +1,11 @@
 import java.sql.*;
 
-public class JavaApplicaiton {
+public class JavaApplication {
     public static void main(String[] args) {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = null;
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost/FirstEx", "kys", "ohnepass");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5555/postgres", "postgres", "password");
             Statement st = connection.createStatement();
             System.out.println("Connection established");
 

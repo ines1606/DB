@@ -1,8 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
+import java.sql.*;
+
 import java.util.function.Consumer;
 
 public class LoginPage {
+
+    private DatabaseManager dbManager;
+
     private JPanel mainPanel; // Representing the root panel linked with the .form file
     private JLabel TitleLabel;
     private JTextField UserField;
@@ -25,7 +30,8 @@ public class LoginPage {
     private final ImageIcon openEyeIcon = new ImageIcon(getClass().getResource("/eye_open.png"));
     private final ImageIcon closedEyeIcon = new ImageIcon(getClass().getResource("/eye_closed.png"));
 
-    public LoginPage() {
+    public LoginPage(DatabaseManager dbManager) {
+
         UserField.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         passwordInput.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         PasswordToggle.setIcon(closedEyeIcon);
@@ -46,17 +52,20 @@ public class LoginPage {
             String enteredUsername = UserField.getText();
             String enteredPassword = new String(passwordInput.getPassword());
 
-            if (enteredUsername.equals(correctUsername) && enteredPassword.equals(correctPassword)) {
-                errorLabel.setVisible(false);
-                onLoginSuccess = true;
-                onLoginSuccess();
-            } else {
+            try {
+                // Authenticate the user and establish a connection
+                Connection userConnection = dbManager.authenticateUser(enteredUsername, enteredPassword);
+
+                // On successful login
+                if (userConnection != null) {
+                    errorLabel.setVisible(false);
+                    onLoginSuccess = true;
+                    onLoginSuccess(); // Notify Main class or other listeners
+                }
+            } catch (SQLException ex) {
+                errorLabel.setText("Invalid username or password, or insufficient permissions.");
                 errorLabel.setVisible(true);
-                passwordInput.setText("");
-                UserField.setText("");
-                onLoginSuccess = false;
-
-
+                ex.printStackTrace();
             }
         });
     }
