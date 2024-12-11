@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
+import java.awt.Toolkit;
+
 
 import java.util.function.Consumer;
 
@@ -65,6 +67,7 @@ public class LoginPage {
             } catch (SQLException ex) {
                 errorLabel.setText("Invalid username or password, or insufficient permissions.");
                 errorLabel.setVisible(true);
+                Toolkit.getDefaultToolkit().beep();
                 ex.printStackTrace();
             }
         });
